@@ -6,26 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link href="css/style.css" rel="stylesheet" />
+    <style>
+      .text-danger{
+        color: red;
+      }
+
+    </style>
   </head>
   <body>
     <div class="container">
         <div class="center">
             <h1>Login</h1>
-            <form action="" method="post">
-                <div class="textfield">
-                    <input type="email" placeholder="Username">
-                </div>
+        
+            <form action="{{url('/')}}/login" method="post">
+              @csrf
+          
+              <div class="textfield">
+                
+                    <input type="email" name="email" placeholder="Username" value="{{old('email')}}">
+                  
+                </div>  <span class="text-danger">@error('email'){{$message}}@enderror</span>
               <div class="textfield">
                 <input type="passsword" name="password" placeholder="Password">
-                </div>
+                
+                </div><span class="text-danger">@error('password'){{$message}}@enderror</span>
               <div class="pass"><b>Forgot Password?</b></div>
               <input type="submit" name="submit" value="Login">
-              <div class="signuplink">Not a Member? <a href="#">SignUp</a>
+              <div class="signuplink">Not a Member? <a href="{{url('/')}}/register">SignUp</a>
             </div>
             </form>
         </div>
      </div>
-
 
   </body>
 </html>
